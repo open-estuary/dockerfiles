@@ -1,0 +1,132 @@
+-- Running cmake version 3.0.2
+-- MySQL 5.6.22-72.0
+-- Packaging as: mysql-5.6.22-72.0-Linux-aarch64
+-- HAVE_VISIBILITY_HIDDEN
+-- HAVE_VISIBILITY_HIDDEN
+-- HAVE_VISIBILITY_HIDDEN
+-- Using cmake version 3.0.2
+-- Not building NDB
+-- Library perconaserverclient depends on OSLIBS -lpthread;m;rt;dl
+-- CMAKE_BUILD_TYPE: RelWithDebInfo
+-- COMPILE_DEFINITIONS: HAVE_CONFIG_H
+-- CMAKE_C_FLAGS:  -Wall -Wextra -Wformat-security -Wvla -Wwrite-strings -Wdeclaration-after-statement
+-- CMAKE_CXX_FLAGS:  -Wall -Wextra -Wformat-security -Wvla -Woverloaded-virtual -Wno-unused-parameter
+-- CMAKE_C_FLAGS_RELWITHDEBINFO: -O3 -g -fabi-version=2 -fno-omit-frame-pointer -fno-strict-aliasing -DDBUG_OFF
+-- CMAKE_CXX_FLAGS_RELWITHDEBINFO: -O3 -g -fabi-version=2 -fno-omit-frame-pointer -fno-strict-aliasing -DDBUG_OFF
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /root/percona-server-5.6.22-72.0
+[  2%] [  2%] [  3%] [  3%] [  3%] [  3%] [  4%] [  5%] Built target zlib
+[  9%] [  9%] Built target mysqlservices
+Built target regex
+Built target gen_lex_hash
+Built target my_safe_process
+Built target comp_sql
+Built target hsclient
+Built target vio
+[ 13%] Built target taocrypt
+Built target yassl
+[ 13%] Built target edit
+[ 18%] Built target INFO_SRC
+Built target strings
+[ 18%] [ 18%] Built target GenServerSource
+Built target GenFixPrivs
+[ 18%] Built target INFO_BIN
+[ 18%] Built target gen_pfs_lex_token
+[ 29%] Built target mysys
+[ 30%] Built target dbug
+[ 30%] [ 31%] [ 31%] [ 31%] [ 32%] [ 33%] Built target mytap
+Built target replace
+Built target queues
+Built target thr_lock
+Built target re
+Built target mysys_ssl
+[ 33%] [ 33%] [ 33%] [ 33%] [ 33%] [ 33%] [ 33%] [ 33%] Built target simple-t
+[ 33%] Built target skip-t
+[ 33%] [ 33%] Built target todo-t
+Built target no_plan-t
+Built target skip_all-t
+Built target basic-t
+Built target comp_err
+Built target my_print_defaults
+Built target resolve_stack_dump
+[ 33%] Built target mysql_waitpid
+Built target resolveip
+[ 34%] Built target mysql_tzinfo_to_sql
+Built target innochecksum
+[ 34%] Built target GenError
+[ 34%] Built target abi_check
+[ 34%] [ 34%] [ 34%] [ 34%] Built target federated
+[ 34%] Built target blackhole
+[ 34%] Built target archive
+Built target csv
+[ 34%] [ 34%] Built target rpl
+Built target master
+[ 36%] Built target partition
+Built target myisammrg
+Built target query_response_time
+[ 39%] [ 45%] [ 47%] Built target heap
+Built target myisam
+Built target slave
+[ 47%] [ 49%] Built target ftexample
+[ 49%] Built target binlog
+[ 49%] [ 49%] Built target auth
+Built target auth_socket
+[ 49%] [ 49%] [ 50%] Built target auth_test_plugin
+[ 50%] [ 50%] Built target qa_auth_client
+[ 50%] Built target qa_auth_server
+Built target handlersocket
+Built target qa_auth_interface
+Built target validate_password
+Built target scalability_metrics
+[ 50%] [ 50%] [ 50%] Built target libfnv1a_udf
+[ 50%] Built target libfnv_udf
+Built target libmurmur_udf
+[ 50%] Built target audit_null
+Built target daemon_example
+[ 51%] Built target audit_log
+[ 52%] [ 52%] [ 52%] Built target semisync_slave
+Built target myisamlog
+[ 54%] [ 54%] [ 54%] Built target myisamchk
+[ 62%] [ 63%] [ 64%] Built target clientlib
+Built target perror
+Built target semisync_master
+Built target perfschema
+Built target myisam_ftdump
+Built target myisampack
+[ 64%] [ 64%] [ 65%] Built target hp_test2
+Built target hp_test1
+Built target sqlgunitlib
+[ 65%] [ 65%] [ 66%] Built target libmysql
+[ 66%] [ 66%] [ 66%] [ 66%] Built target pfs-t
+Built target perconaserverclient
+[ 66%] [ 67%] [ 67%] Built target pfs_account-oom-t
+Built target pfs_host-oom-t
+Built target pfs_instr_class-t
+Built target pfs_instr-oom-t
+Built target pfs_instr-t
+Built target pfs_instr_class-oom-t
+Built target pfs_user-oom-t
+[ 67%] [ 67%] [ 67%] Built target symlink_libperconaserverclient_r.so.18
+[ 67%] Built target symlink_libperconaserverclient_r.so
+Built target symlink_libperconaserverclient_r.so.18.1.0
+[ 67%] Built target symlink_libperconaserverclient_r.a
+[ 67%] [ 67%] [ 67%] [ 68%] [ 68%] [ 68%] Built target mysql_plugin
+[ 68%] [ 68%] [ 69%] Built target mysql_config_editor
+Built target mysqladmin
+Built target mysqlcheck
+Built target mysql_upgrade
+[ 69%] Built target mysqlimport
+Built target mysql
+Built target mysqlslap
+Built target mysqlshow
+Built target mysqldump
+Built target mysqlbinlog
+[ 82%] Built target innobase
+[ 82%] [ 83%] [ 83%] Built target mysqltest
+Built target bug25714
+Built target mysql_client_test
+[100%] Built target sql
+[100%] [100%] Built target mysqld
+Built target pfs_connect_attr-t
+[100%] Built target udf_example

@@ -1,0 +1,2 @@
+/usr/bin/ar cr libperconaserverclient.a  CMakeFiles/perconaserverclient.dir/perconaserverclient_depends.c.o
+/usr/bin/ranlib libperconaserverclient.a
