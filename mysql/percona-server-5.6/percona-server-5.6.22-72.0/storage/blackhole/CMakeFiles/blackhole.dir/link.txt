@@ -1,2 +1,0 @@
-/usr/bin/ar cr libblackhole.a  CMakeFiles/blackhole.dir/ha_blackhole.cc.o
-/usr/bin/ranlib libblackhole.a

@@ -1,2 +1,0 @@
-/usr/bin/ar cr librpl.a  CMakeFiles/rpl.dir/rpl_handler.cc.o CMakeFiles/rpl.dir/rpl_tblmap.cc.o
-/usr/bin/ranlib librpl.a

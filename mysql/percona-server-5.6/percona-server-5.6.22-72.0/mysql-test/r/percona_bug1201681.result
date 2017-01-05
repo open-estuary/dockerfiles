@@ -1,6 +1,0 @@
-# Request clean shutdown
-# Wait for disconect
-# Restart server.
-SELECT 1;
-1
-1
