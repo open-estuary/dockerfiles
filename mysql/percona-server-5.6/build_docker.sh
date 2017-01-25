@@ -4,8 +4,8 @@
 # It needs to build and install percona server firstly before building Percona Server docker image, 
 #  
 # Build and install percona server steps:
-# 1) git clone https://github.com/sjtuhjh/application.git
-# 2) cd cd applications/apps/mysql/percona_1/
+# 1) git clone https://github.com/sjtuhjh/applications.git
+# 2) cd applications/apps/mysql/percona_1/
 # 3) setup.sh server
 #
 # Please note that the percona server will be installed into /u01 directoy by default
