@@ -1,4 +1,4 @@
-FROM openestuary/centos
+FROM openestuary/centos:v300
 
 RUN  groupadd -r mysql && useradd -r -g mysql mysql
 ENV  MYSQL_VERSION percona.5.6.22

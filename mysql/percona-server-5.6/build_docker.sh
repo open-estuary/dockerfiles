@@ -55,5 +55,5 @@ rm -fr u01/my3306/bin/myisampack
 yum install -y -q docker
 service docker start
 
-docker build -t openestuary/perconaserver-5.6${tag_num} .
+docker build -t openestuary/mysql${tag_num} .
 
