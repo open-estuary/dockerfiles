@@ -46,6 +46,8 @@ if [  ! -d "/u01/my3306/data/mysql" ] ; then
     ln -s /u01/my3306/share /u01/mysql/share
     chown -R mysql.root /u01
 
+    cp /usr/local/mysql/config/my.conf /etc/my.conf
+
     /u01/my3306/scripts/mysql_install_db --defaults-file=/etc/my.conf  \
                                      --basedir=/u01/my3306 \
                                      --datadir=/u01/my3306/data \

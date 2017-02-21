@@ -13,7 +13,7 @@ ADD  usr/lib64/libaio.so.1.0.1 /usr/lib64/
 RUN  ln -s /lib64/libaio.so.1.0.1 /usr/lib64/libaio.so.1
 
 ADD  u01 /u01
-ADD  etc/my.conf /etc/
+ADD  etc/my.conf /usr/local/mysql/config/my.conf
 
 ADD  mysql_init.sh /usr/local/bin/
 
