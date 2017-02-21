@@ -56,7 +56,11 @@ if [ ! -f ${PGDATA}/postgresql.conf ] ; then
     su ${PGUSER} -c "${PGHOME}/bin/initdb -D ${PGDATA} -E UTF8 --locale=C -U ${PGUSER} -X ${PGWALLOG}"
 
     if [ x"${PGCONF}" == x"small" ] ; then
-        cp ${PGHOME}/config/postgresql_small.conf ${PGDATA}/postgresql.conf
+        if [ -f ${PGHOME}/config/postgresql.conf ] ; then
+            cp ${PGHOME}/config/postgresql.conf ${PGDATA}/postgresql.conf
+        else 
+            cp ${PGHOME}/config/postgresql_small.conf ${PGDATA}/postgresql.conf
+        fi
     else 
         cp ${PGHOME}/config/postgresql_large.conf ${PGDATA}/postgresql.conf
     fi
