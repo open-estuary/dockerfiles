@@ -1,0 +1,3 @@
+#To ingore files which are not used during docker building
+./Ubuntu_ARM64.tar.gz
+./Ubuntu

@@ -8,7 +8,9 @@ fi
 #Step 1: Prepare for RootFS firstly
 yum install -y -q wget
 if [ ! -f "./Ubuntu_ARM64.tar.gz" ] ; then
-    wget ftp://117.78.41.188/pre-releases/3.0/b3/linux/Ubuntu/Ubuntu_ARM64.tar.gz
+    echo "Please download Ubuntu_ARM64.tar.gz firstly"
+    echo "For example, you could download it via 'wget ftp://117.78.41.188/pre-releases/3.0/rc1/linux/Ubuntu/Common/Ubuntu_ARM64.tar.gz'"
+    exit 0
 fi
 
 if [ ! -d "./Ubuntu" ] ; then
