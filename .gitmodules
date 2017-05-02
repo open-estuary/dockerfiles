@@ -1,0 +1,3 @@
+[submodule "ceph/ceph-docker"]
+	path = ceph/ceph-docker
+	url = https://github.com/sjtuhjh/ceph-docker

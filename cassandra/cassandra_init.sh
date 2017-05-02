@@ -35,9 +35,12 @@ if [ ! -d ${DATABASE_DIR} ] ; then
 
     CASSANDRA_SEEDS="$(hostname --ip-address)"
     sed -ri 's/(- seeds:).*/\1 "'"$CASSANDRA_SEEDS"'"/' /etc/cassandra/cassandra.yaml
-    sed -ri 's/(listen_address:).*/\1 '"$CASSANDRA_SEEDS"'/' /etc/cassandra/cassandra.yaml 
-    sed -ri 's/(broadcast_rpc_address:).*/\1 '"$CASSANDRA_SEEDS"'/' /etc/cassandra/cassandra.yaml
-    sed -ri 's/(rpc_address:).*/\1 '"0.0.0.0"'/' /etc/cassandra/cassandra.yaml
+    sed -ri 's/(^listen_address:).*/\1 '"$CASSANDRA_SEEDS"'/' /etc/cassandra/cassandra.yaml 
+    sed -ri 's/#\ (listen_address:).*/\1 '"$CASSANDRA_SEEDS"'/' /etc/cassandra/cassandra.yaml 
+    sed -ri 's/(^broadcast_rpc_address:).*/\1 '"${CASSANDRA_SEEDS}"'/' /etc/cassandra/cassandra.yaml 
+    sed -ri 's/^#\ (broadcast_rpc_address:).*/\1 '"$CASSANDRA_SEEDS"'/' /etc/cassandra/cassandra.yaml
+    sed -ri 's/(^rpc_address:).*/\1 '"0.0.0.0"'/' /etc/cassandra/cassandra.yaml
+    sed -ri 's/^#\ (rpc_address:).*/\1 '"0.0.0.0"'/' /etc/cassandra/cassandra.yaml
 fi
 
 exec "$@"
