@@ -1,15 +1,40 @@
 #!/bin/bash
 
-#Notes:
-#  
-# Please note that the Cassandra will be installed into /u01 directoy by default
-# So please make sure that the /u01 directory is empty before building and installing it
-#
+# Author : Huang Jinhua
+# Date   : 05/04/2017
+# Email  : sjtuhjh@hotmail.com
+# Comments: it is to build Ceph docker image
 
+# By default, it will build 'latest' tag
+
+CUR_DIR=$(cd `dirname $0`; pwd)
 tag_num=""
 if [ ! -z "${1}" ] ;  then
     tag_num=":${1}"
 fi
+
+#################################################################################
+#Build docker image function
+#################################################################################
+build_docker_image() {
+    IMAGE_SRC=${1}
+    IMAGE_NAME=${2}
+    BUILD_DIR=${CUR_DIR}/build_${IMAGE_NAME}
+
+    if [ ! -d ${BUILD_DIR} ] ; then
+        mkdir -p ${BUILD_DIR}
+    else 
+        rm -fr ${BUILD_DIR}/*
+    fi
+
+    rsync -Lr ${IMAGE_SRC}/* ${BUILD_DIR}/
+    cp ${CUR_DIR}/confd ${BUILD_DIR}/confd_bin
+    cp ${CUR_DIR}/forego ${BUILD_DIR}/
+    
+    cd ${BUILD_DIR}
+    docker build -t openestuary/${IMAGE_NAME}${tag_num} .
+}
+
 
 #Remove unnecessary files in order to reduce size
 
@@ -23,7 +48,6 @@ if [ -z "$(which go 2>/dev/null)" ] ; then
 fi
 
 #Step1: Preapre submodules
-CUR_DIR=$(cd `dirname $0`; pwd)
 cd ${CUR_DIR}/..
 git submodule update --init --recursive
 
@@ -40,28 +64,19 @@ mkdir tmpbuild
     cp ./bin/confd ${CUR_DIR}/
 fi
 
-if [ ! -f forgo ] ; then
+if [ ! -f forego ] ; then
     cd ${GOPATH}
     go get -u github.com/ddollar/forego
     cp ${GOPATH}/bin/forego ${CUR_DIR}/
 fi
 
-#Step3:
+#Step3: Build ceph-base(which only install ceph but would't run any tasks) 
+#       and ceph(which will run specific daemon based on input parameter)
+
 VERSION="kraken"
-BASE_IMAGE=${CUR_DIR}/ceph-docker/ceph-releases/${VERSION}/centos/7/base
-DAEMON_IMAGE=${CUR_DIR}/ceph-docker/ceph-releases/${VERSION}/centos/7/daemon
+BASE_SRC_DIR=${CUR_DIR}/ceph-docker/ceph-releases/${VERSION}/centos/7/base
+DAEMON_SRC_DIR=${CUR_DIR}/ceph-docker/ceph-releases/${VERSION}/centos/7/daemon
 
-pushd ${BASE_IMAGE} > /dev/null
-cp ${CUR_DIR}/confd ${BASE_IMAGE}/
-cp ${CUR_DIR}/forego ${BASE_IMAGE}/
-docker build -t openestuary/ceph-base${tag_num} .
-popd > /dev/null
+build_docker_image ${BASE_SRC_DIR} ceph-base
+build_docker_image ${DAEMON_SRC_DIR} ceph
 
-echo "Build ceph Daemon image ..."
-cp ${CUR_DIR}/confd ${BASE_IMAGE}/
-cp ${CUR_DIR}/forego ${BASE_IMAGE}/
-pushd ${BASE_IMAGE} > /dev/null
-docker build -t openestuary/ceph${tag_num} .
-popd > /dev/null
-
-rm -fr tmpbuild
