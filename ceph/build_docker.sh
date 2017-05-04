@@ -35,9 +35,7 @@ build_docker_image() {
     docker build -t openestuary/${IMAGE_NAME}${tag_num} .
 }
 
-
-#Remove unnecessary files in order to reduce size
-
+#Step0: install necessary packages before building
 if [ ! -z "$(ps -aux | grep docker | grep -v docker)" ] ; then
     yum install -y -q docker
     service docker start
@@ -55,7 +53,7 @@ git submodule update --init --recursive
 cd ${CUR_DIR}/
 export GOPATH=${CUR_DIR}/tmpbuild
 if [ ! -f confd ] ; then
-mkdir tmpbuild
+    mkdir -p ${GOPATH}
     cd ${GOPATH}
     mkdir -p $GOPATH/src/github.com/kelseyhightower
     git clone https://github.com/kelseyhightower/confd.git $GOPATH/src/github.com/kelseyhightower/confd
