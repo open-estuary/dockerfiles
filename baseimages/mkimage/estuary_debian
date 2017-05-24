@@ -1,0 +1,34 @@
+#!/bin/bash
+set -x
+function usage()
+{
+	echo $0 {target-dir}
+}
+
+[ $# -lt 1 ] && { usage; exit -1;}
+
+target=$1
+[ -d "$target" ] || { echo "$target doesn't exist or is not a dir"; exit -1;}
+echo $target
+
+curl ftp://117.78.41.188/releases/3.0/linux/Debian/Common/Debian_ARM64.tar.gz -o Debian_ARM64.tar.gz
+[ $? -eq 0 ] && tar zxf Debian_ARM64.tar.gz -C $target
+rm -rf Debian_ARM64.tar.gz
+
+LANG=en_US.UTF-8 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin/ chroot $target /bin/bash -c "\
+apt-get purge -y;\
+apt-get autoremove -y;\
+apt-get clean;\
+/bin/rm -rf /tmp;\
+/bin/rm -rf /va/lib/apt/lists/*;\
+/bin/rm -rf /lib/modules/*;\
+/bin/rm -rf /usr/share/doc/*;\
+/bin/rm -rf /usr/share/man/*;\
+/bin/rm -rf /usr/share/info/*;\
+/bin/rm -rf /usr/share/locale/*;\
+/bin/rm -rf /usr/share/zoneinfo/*;\
+/bin/rm -rf /usr/share/i18n/*;\
+/bin/rm -rf /usr/local/estuary;\
+/bin/rm -rf /var/*;"
+
+exit 0
