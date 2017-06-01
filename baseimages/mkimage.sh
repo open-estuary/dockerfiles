@@ -6,7 +6,7 @@ mkimg="$(basename "$0")"
 usage() {
 	echo >&2 "usage: $mkimg [-d dir] [-t tag] [--compression algo| --no-compression] script [script-args]"
 	echo >&2 "   ie: $mkimg -t someuser/debian debootstrap --variant=minbase jessie"
-	echo >&2 "       $mkimg -t someuser/debian estuary_debian"
+	echo >&2 "       $mkimg -t someuser/debian estuary_debian [version]"
 	echo >&2 "       $mkimg -t someuser/ubuntu debootstrap --include=ubuntu-minimal --components=main,universe trusty"
 	echo >&2 "       $mkimg -t someuser/ubuntu estuary_ubuntu"
 	echo >&2 "       $mkimg -t someuser/busybox busybox-static"
