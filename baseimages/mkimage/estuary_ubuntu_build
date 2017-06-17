@@ -12,12 +12,15 @@ version=${2:-"3.0"}
 [ -d "$target" ] || { echo "$target doesn't exist or is not a dir"; exit -1;}
 echo $target
 
-curl ftp://117.78.41.188/releases/$version/linux/Debian/Common/Debian_ARM64.tar.gz|tar zx -C $target || exit -1
+curl ftp://117.78.41.188/releases/$version/linux/Ubuntu/Common/Ubuntu_ARM64.tar.gz|tar zx -C $target || exit -1
+#tar zxf /root/Ubuntu_ARM64.tar.gz -C $target || exit -1
 
 LANG=en_US.UTF-8 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin/ chroot $target /bin/bash -c "\
 apt-get purge -y;\
 apt-get autoremove -y;\
 apt-get clean;\
+localedef --list-archive | grep -v -i ^en | xargs localedef --delete-from-archive;\
+/bin/rm -rf /boot/*;\
 /bin/rm -rf /tmp/*;\
 /bin/rm -rf /lib/modules/*;\
 /bin/rm -rf /usr/share/doc/*;\
