@@ -6,9 +6,13 @@ mkimg="$(basename "$0")"
 usage() {
 	echo >&2 "usage: $mkimg [-d dir] [-t tag] [--compression algo| --no-compression] script [script-args]"
 	echo >&2 "   ie: $mkimg -t someuser/debian debootstrap --variant=minbase jessie"
-	echo >&2 "       $mkimg -t someuser/debian estuary_debian [version]"
+	echo >&2 "       $mkimg -t someuser/debian estuary_debian_base [estuary version]"
+	echo >&2 "       $mkimg -t someuser/debian estuary_debian_build [estuary version]"
+	echo >&2 "       $mkimg -t someuser/ubuntu estuary_ubuntu_base [estuary version]"
 	echo >&2 "       $mkimg -t someuser/ubuntu debootstrap --include=ubuntu-minimal --components=main,universe trusty"
-	echo >&2 "       $mkimg -t someuser/ubuntu estuary_ubuntu"
+	echo >&2 "       $mkimg -t someuser/ubuntu estuary_ubuntu_build [estuary version]"
+	echo >&2 "       $mkimg -t someuser/centos estuary_centos_base [estuary version]"
+	echo >&2 "       $mkimg -t someuser/centos estuary_centos_build [estuary version]"
 	echo >&2 "       $mkimg -t someuser/busybox busybox-static"
 	exit 1
 }
@@ -87,10 +91,13 @@ mkdir -p "$rootfsDir/dev" "$rootfsDir/proc"
 
 # make sure /etc/resolv.conf has something useful in it
 mkdir -p "$rootfsDir/etc"
+if [ ! -L $rootfsDir/etc/resolv.conf ]
+then
 cat > "$rootfsDir/etc/resolv.conf" <<'EOF'
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 EOF
+fi
 
 tarFile="$dir/rootfs.tar${compression:+.$compression}"
 touch "$tarFile"
@@ -101,9 +108,13 @@ touch "$tarFile"
 )
 
 echo >&2 "+ cat > '$dir/Dockerfile'"
-cat > "$dir/Dockerfile" <<EOF
-FROM scratch
-ADD $(basename "$tarFile") /
+cat > "$dir/Dockerfile" <<-EOF
+	FROM scratch
+	LABEL name="Estuary CentOS Base Image " \
+		  vendor="Estuary CentOS" \
+		  license="GPLv2" \
+		  build-date="$(date -u -R)"
+	ADD $(basename "$tarFile") /
 EOF
 
 # if our generated image has a decent shell, let's set a default command

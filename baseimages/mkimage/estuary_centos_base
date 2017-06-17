@@ -1,0 +1,256 @@
+#!/bin/bash
+set -x
+function usage()
+{
+	echo $0 {target-dir} [version]
+}
+
+[ $# -lt 1 ] && { usage; exit -1;}
+
+target=$1
+version=${2:-"3.0"}
+[ -d "$target" ] || { echo "$target doesn't exist or is not a dir"; exit -1;}
+echo $target
+
+curl ftp://117.78.41.188/releases/$version/linux/CentOS/Common/CentOS_ARM64.tar.gz|tar zx -C $target || exit -1
+#tar zxf /root/CentOS_ARM64.tar.gz -C $target || exit -1
+
+LANG=en_US.UTF-8 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin/ chroot $target /bin/bash -c "\
+yum remove -y kernel-tools;\ 
+yum remove -y kernel-headers;\ 
+yum remove -y perl*;\
+yum remove -y libmodman;\
+yum remove -y kernel-tools-libs;\
+yum remove -y kbd-misc;\
+yum remove -y perl-parent;\
+yum remove -y numactl-libs;\
+yum remove -y pciutils-devel;\ 
+yum remove -y rsyslog;\
+yum remove -y alsa-firmware;\
+yum remove -y libseccomp;\
+yum remove -y selinux-policy;\
+yum remove -y perl-Text-ParseWords;\
+yum remove -y device-mapper-persistent-data;\
+yum remove -y libselinux-utils;\
+yum remove -y elfutils-devel;\
+yum remove -y parted;\
+yum remove -y mozjs17;\
+yum remove -y libunistring;\
+yum remove -y perl-Encode;\
+yum remove -y elfutils;\
+yum remove -y lvm2-libs;\
+yum remove -y acpica-tools;\
+yum remove -y dracut-config-generic;\
+yum remove -y ncurses-devel;\
+yum remove -y pcsc-lite-libs;\
+yum remove -y aic94xx-firmware;\
+yum remove -y device-mapper-multipath;\
+yum remove -y jansson;\
+yum remove -y libverto-devel;\
+yum remove -y e2fsprogs-libs;\
+yum remove -y iprutils;\
+yum remove -y libuuid-devel;\
+yum remove -y libnetfilter_conntrack;\
+yum remove -y perl;\
+yum remove -y m4;\
+yum remove -y container-selinux;\
+yum remove -y libusbx;\
+yum remove -y libcom_err-devel;\
+yum remove -y iptables;\
+yum remove -y diffstat;\
+yum remove -y sudo;\
+yum remove -y logrotate;\
+yum remove -y libgomp;\
+yum remove -y oci-register-machine;\
+yum remove -y alsa-lib;\
+yum remove -y libfdt-devel;\
+yum remove -y centos-logos;\
+yum remove -y perl-constant;\
+yum remove -y polkit;\
+yum remove -y perl-Pod-Usage;\
+yum remove -y zlib-devel;\
+yum remove -y postfix;\
+yum remove -y pciutils;\
+yum remove -y make;\
+yum remove -y openssh-clients;\
+yum remove -y oci-systemd-hook;\
+yum remove -y perl-libs;\
+yum remove -y kbd;\
+yum remove -y opensc;\
+yum remove -y perl-Time-HiRes;\
+yum remove -y perl-File-Temp;\
+yum remove -y uuid;\
+yum remove -y dracut-config-rescue;\
+yum remove -y libnl3;\
+yum remove -y policycoreutils;\
+yum remove -y pixman;\
+yum remove -y flex;\
+yum remove -y perl-Time-Local;\
+yum remove -y lzo;\
+yum remove -y dhclient;\
+yum remove -y krb5-devel;\
+yum remove -y perl-threads;\
+yum remove -y cscope;\
+yum remove -y patch;\
+yum remove -y gettext-libs;\
+yum remove -y indent;\
+yum remove -y libedit;\
+yum remove -y openssh;\
+yum remove -y openssl;\
+yum remove -y perl-Scalar-List-Utils;\
+yum remove -y lvm2;\
+yum remove -y libgudev1;\
+yum remove -y lshw;\
+yum remove -y NetworkManager-libnm;\
+yum remove -y fxload;\
+yum remove -y NetworkManager-glib;\
+yum remove -y groff-base;\
+yum remove -y perl-Getopt-Long;\
+yum remove -y authconfig;\
+yum remove -y dhcp-libs;\
+yum remove -y libarchive;\
+yum remove -y ivtv-firmware;\
+yum remove -y openssl-devel;\
+yum remove -y cronie-anacron;\
+yum remove -y xfsprogs;\
+yum remove -y pcsc-lite;\
+yum remove -y python-pyudev;\
+yum remove -y libcroco;\
+yum remove -y perl-Pod-Simple;\
+yum remove -y selinux-policy-targeted;\
+yum remove -y perl-Git;\
+yum remove -y slang-devel;\
+yum remove -y crontabs;\
+yum remove -y perl-threads-shared;\
+yum remove -y python-devel;\
+yum remove -y uuid-devel;\
+yum remove -y hmaccalc;\
+yum remove -y plymouth-scripts;\
+yum remove -y pesign;\
+yum remove -y perl-Pod-Escapes;\
+yum remove -y lm_sensors-libs;\
+yum remove -y cronie;\
+yum remove -y strace;\
+yum remove -y libusal;\
+yum remove -y libpipeline;\
+yum remove -y iproute;\
+yum remove -y perl-Pod-Perldoc;\
+yum remove -y perl-macros;\
+yum remove -y libsepol-devel;\
+yum remove -y ethtool;\
+yum remove -y bash-completion;\
+yum remove -y libfdt;\
+yum remove -y coolkey;\
+yum remove -y tuned;\
+yum remove -y bison;\
+yum remove -y net-tools;\
+yum remove -y perl-HTTP-Tiny;\
+yum remove -y pcre-devel;\
+yum remove -y json-c;\
+yum remove -y mdadm;\
+yum remove -y libaio;\
+yum remove -y initscripts;\
+yum remove -y hwdata;\
+yum remove -y libestr;\
+yum remove -y perl-Carp;\
+yum remove -y irqbalance;\
+yum remove -y GeoIP;\
+yum remove -y perl-Exporter;\
+yum remove -y newt;\
+yum remove -y doxygen;\
+yum remove -y sysstat;\
+yum remove -y device-mapper-multipath-libs;\
+yum remove -y perl-File-Path;\
+yum remove -y virt-what;\
+yum remove -y python-configobj;\
+yum remove -y docker-common;\
+yum remove -y byacc;\
+yum remove -y plymouth-core-libs;\
+yum remove -y sysvinit-tools;\
+yum remove -y perl-PathTools;\
+yum remove -y readline-devel;\
+yum remove -y iscsi-initiator-utils-iscsiuio;\
+yum remove -y libgnome-keyring;\
+yum remove -y perl-Error;\
+yum remove -y python-decorator;\
+yum remove -y iscsi-initiator-utils;\
+yum remove -y yajl;\
+yum remove -y pixman-devel;\
+yum remove -y perl-podlators;\
+yum remove -y libsysfs;\
+yum remove -y alsa-tools-firmware;\
+yum remove -y perl-Filter;\
+yum remove -y audit;\
+yum remove -y libdrm;\
+yum remove -y docker;\
+yum remove -y less;\
+yum remove -y xz-devel;\
+yum remove -y kbd-legacy;\
+yum remove -y libselinux-devel;\
+yum remove -y binutils-devel;\
+yum remove -y perl-Socket;\
+yum remove -y genisoimage;\
+yum remove -y polkit-pkla-compat;\
+yum remove -y perl-TermReadKey;\
+yum remove -y systemd-sysv;\
+yum remove -y libicu;\
+yum remove -y rsync;\
+yum remove -y newt-python;\
+yum remove -y btrfs-progs;\
+yum remove -y linux-firmware;\
+yum remove -y fipscheck;\
+yum remove -y bc;\
+yum remove -y dmidecode;\
+yum remove -y libnl3-cli;\
+yum remove -y wget;\
+yum remove -y dhcp-common;\
+yum remove -y libkadm5;\
+yum remove -y mariadb-libs;\
+yum remove -y libmnl;\
+yum remove -y gdisk;\
+yum remove -y git;\
+yum remove -y python-perf;\
+yum remove -y tcp_wrappers-libs;\
+yum remove -y ctags;\
+yum remove -y bind-libs-lite;\
+yum remove -y perl-Storable;\
+yum remove -y pciutils-libs;\
+yum remove -y elfutils-libelf-devel;\
+yum remove -y openssh-server;\
+yum remove -y pcsc-lite-ccid;\
+yum remove -y libnfnetlink;\
+yum remove -y device-mapper-event-libs;\
+yum remove -y plymouth;\
+yum remove -y device-mapper-event;\
+yum remove -y newt-devel;\
+yum remove -y lsscsi;\
+yum remove -y cmake;\
+yum remove -y gettext;\
+yum remove -y fipscheck-lib;\
+yum remove -y emacs-filesystem;\
+yum remove -y libreport-filesystem;\
+yum remove -y rdma;\
+yum remove -y slang;\
+yum remove -y e2fsprogs;\
+yum remove -y chrony;\
+yum remove -y keyutils-libs-devel;\
+rm -fr /usr/local/estuary/;\
+rm -fr /boot/;\
+rm -rf /tmp/*;\
+rm -rf /lib/modules/*;\
+rm -rf /usr/share/doc/*;\
+rm -rf /usr/share/man/*;\
+rm -rf /usr/share/info/*;\
+rm -rf /usr/share/locale/*;\
+rm -rf /usr/share/zoneinfo/*;\
+rm -rf /usr/share/i18n/*;\
+rm -rf /usr/local/estuary;\
+rm -rf /var/log/*;\
+rm -fr /usr/lib/modules/;\
+rm -fr /usr/lib/firmware/;\
+localedef --list-archive | grep -v -i ^en | xargs localedef --delete-from-archive;\
+mv /usr/lib/locale/locale-archive /usr/lib/locale/locale-archive.tmpl;\
+build-locale-archive;\
+echo > /usr/lib/locale/locale-archive.tmp;"
+
+exit 0

@@ -1,0 +1,29 @@
+#!/bin/bash
+set -x
+function usage()
+{
+	echo $0 {target-dir} [version]
+}
+
+[ $# -lt 1 ] && { usage; exit -1;}
+
+target=$1
+version=${2:-"3.0"}
+[ -d "$target" ] || { echo "$target doesn't exist or is not a dir"; exit -1;}
+echo $target
+
+curl ftp://117.78.41.188/releases/$version/linux/CentOS/Common/CentOS_ARM64.tar.gz|tar zx -C $target || exit -1
+#tar zxf /root/CentOS_ARM64.tar.gz -C $target || exit -1
+
+LANG=en_US.UTF-8 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin/ chroot $target /bin/bash -c "\
+yum clean all;\
+rm -fr /usr/local/estuary/;\
+rm -fr /boot/;\
+rm -fr /usr/lib/modules/;\
+rm -fr /usr/lib/firmware/;\
+localedef --list-archive | grep -v -i ^en | xargs localedef --delete-from-archive;\
+mv /usr/lib/locale/locale-archive /usr/lib/locale/locale-archive.tmpl;\
+build-locale-archive;\
+echo > /usr/lib/locale/locale-archive.tmp;"
+
+exit 0
