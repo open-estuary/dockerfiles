@@ -8,6 +8,9 @@ ENV  PATH /usr/local/bin:/usr/local/redis/bin:$PATH
 
 RUN yum install -y redis
 
+RUN rm -rf /var/lib/yum/yumdb && \
+    rm -rf /var/lib/yum/history
+
 EXPOSE 6379
 #CMD ["/usr/local/redis/bin/redis-server", "/usr/local/redis/config/redis.conf"]
 
