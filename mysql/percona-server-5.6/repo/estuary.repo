@@ -1,0 +1,6 @@
+[Estuary]
+name=estuary-repo
+baseurl=ftp://repoftp:repopushez7411@117.78.41.188/releases/5.0/centos/
+enabled=1
+gpgcheck=0
+gpg=ftp://repoftp:repopushez7411@117.78.41.188/releases/ESTUARY-GPG-KEY
