@@ -6,7 +6,9 @@ ENV DISCOVERY_VERSION discovery-service-1.0
 RUN yum install -y micro-service-discovery.aarch64 && \
     pushd /usr/bin/jarfile/discovery > /dev/null && \ 
     tar -zxvf micro-service-1.0-discovery.tar.gz && \
-    popd > /dev/null
+    popd > /dev/null && \
+    rm -rf /var/lib/yum/yumdb && \
+    rm -rf /var/lib/yum/history
 
 EXPOSE 8761
 

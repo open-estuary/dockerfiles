@@ -6,4 +6,4 @@ fi
 yum install -y -q docker
 service docker start
 
-docker build -t openestuary/search${tag_num} .
+docker build -t openestuary/e-commerce-search${tag_num} .

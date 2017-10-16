@@ -6,7 +6,9 @@ ENV APIGATEWAY_VERSION apigateway-service-1.0
 RUN yum install -y micro-service-api.aarch64 && \
     pushd /usr/bin/jarfile/api > /dev/null && \ 
     tar -zxvf micro-service-1.0-api.tar.gz && \
-    popd > /dev/null
+    popd > /dev/null && \
+    rm -rf /var/lib/yum/yumdb && \
+    rm -rf /var/lib/yum/history
 
 EXPOSE 5555
 
