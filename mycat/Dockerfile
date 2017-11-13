@@ -1,4 +1,4 @@
-FROM openestuary/centos:3.1
+FROM openestuary/centos:5.0-full
 
 ENV  MYCAT_VERSION mycat_1.6
 ENV  MYCAT_HOME /usr/local/mycat
