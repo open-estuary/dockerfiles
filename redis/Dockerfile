@@ -1,4 +1,4 @@
-FROM openestuary/centos:3.1
+FROM openestuary/centos:5.0-full
 
 ENV  REDIS_VERSION redis-4.0.2
 ENV  PATH /usr/local/bin:/usr/local/redis/bin:$PATH
