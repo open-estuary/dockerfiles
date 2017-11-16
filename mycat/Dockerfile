@@ -1,10 +1,10 @@
 FROM openestuary/centos:5.0-full
 
 ENV  MYCAT_VERSION mycat_1.6
-ENV  MYCAT_HOME /usr/local/mycat
-ENV  PATH /usr/local/bin:/usr/local/mycat/bin:$PATH
+ENV  MYCAT_HOME /usr/share/mycat
+ENV  PATH /usr/local/bin:/usr/share/mycat/bin:$PATH
 
-RUN  mkdir -p /usr/local/mycat
+RUN  mkdir -p /usr/share/mycat
 
 RUN yum install -y mycat && \
     rm -rf /var/lib/yum/yumdb && \
