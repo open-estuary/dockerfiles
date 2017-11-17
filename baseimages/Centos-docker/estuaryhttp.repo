@@ -1,0 +1,6 @@
+[Estuary]
+name=estuary-repo
+baseurl=http://repo.estuarydev.org/releases/5.0/centos/
+enabled=1
+gpgcheck=1
+gpg=http://repo.estuarydev.org/releases/ESTUARY-GPG-KEY

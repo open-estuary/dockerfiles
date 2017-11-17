@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#Author :Huang Jinhua
-#Date   :2017/01/25
+#Author :Wang Yu
+#Date   :2017/11/08
 #
 #Notes:
 #This script build docker only.
@@ -15,5 +15,5 @@ fi
 yum install -y -q docker
 service docker start
 
-docker build -t openestuary/redis${tag_num} .
+docker build -t openestuary/twemproxy${tag_num} .
 
