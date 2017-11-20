@@ -1,15 +1,12 @@
 FROM  openestuary/openjdk:1.8
 
-ENV APIGATEWAY_VERSION apigateway-service-1.0
+ENV APIGATEWAY_VERSION micro-service-api-2.0
 
-#RUN yum clean && \
-RUN yum install -y micro-service-api.aarch64 && \
-    pushd /usr/bin/jarfile/api > /dev/null && \ 
-    tar -zxvf micro-service-1.0-api.tar.gz && \
-    popd > /dev/null && \
+RUN yum clean all && \
+    yum install -y micro-service-api && \
     rm -rf /var/lib/yum/yumdb && \
     rm -rf /var/lib/yum/history
 
-EXPOSE 5555
+EXPOSE 8765
 
-CMD  ["java", "-jar", "/usr/bin/jarfile/api/target/api-gateway.jar"]
+CMD  ["/opt/micro-services/microservice-zuul"]

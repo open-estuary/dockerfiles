@@ -1,15 +1,12 @@
 FROM  openestuary/openjdk:1.8
 
-ENV SEARCH_VERSION search-service-1.0
+ENV SEARCH_VERSION e-commerce-search-2.0
 
-#RUN yum clean && \
-RUN yum install -y micro-service-search.aarch64 && \
-    pushd /usr/bin/jarfile/search > /dev/null && \ 
-    tar -zxvf micro-service-1.0-search.tar.gz && \
-    popd > /dev/null && \
+RUN yum clean all && \
+    yum install -y micro-service-search.aarch64 && \
     rm -rf /var/lib/yum/yumdb && \
     rm -rf /var/lib/yum/history
 
 EXPOSE 8002
 
-CMD  ["java", "-jar", "/usr/bin/jarfile/search/target/htsat-search.jar"]
+CMD  ["/opt/e-commerce/e-commerce-search"]

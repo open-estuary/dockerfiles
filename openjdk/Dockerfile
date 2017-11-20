@@ -1,4 +1,4 @@
-FROM    openestuary/centos:3.1
+FROM    openestuary/centos:5.0
 MAINTAINER  Open-Estuary "sjtuhjh@hotmail.com"
 
 ENV JAVA_VERSION 1.8.0

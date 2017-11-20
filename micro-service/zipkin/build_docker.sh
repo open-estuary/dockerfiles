@@ -6,4 +6,4 @@ fi
 yum install -y -q docker
 service docker start
 
-docker build -t openestuary/zuul${tag_num} .
+docker build -t openestuary/zipkin-server${tag_num} .
