@@ -10,5 +10,5 @@ RUN yum install -y mycat && \
     rm -rf /var/lib/yum/yumdb && \
     rm -rf /var/lib/yum/history
 
-CMD  ["/usr/share/mycat/bin/mycat start"]
+CMD  ["/usr/share/mycat/bin/mycat start &"]
 
